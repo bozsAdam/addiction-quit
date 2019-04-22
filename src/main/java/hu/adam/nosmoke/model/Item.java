@@ -1,12 +1,10 @@
 package hu.adam.nosmoke.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +18,12 @@ public class Item {
 
     private String name;
     private long cost;
+
+    @Singular
+    @OneToMany(mappedBy = "item",cascade = {CascadeType.PERSIST})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnoreProperties({"item"})
+    private Set<User> users;
 
 }
