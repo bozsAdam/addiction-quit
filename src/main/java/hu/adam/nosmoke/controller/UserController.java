@@ -4,6 +4,7 @@ import hu.adam.nosmoke.controller.request.AlignRequest;
 import hu.adam.nosmoke.model.AppUser;
 import hu.adam.nosmoke.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,11 @@ public class UserController {
     public void alignItemToUser(@RequestBody AlignRequest alignRequest){
         log.info("Setting the item for a user");
         userService.alignItemToUser(alignRequest.getItemId(),alignRequest.getUserId());
+    }
+
+    @GetMapping("/user/{id}")
+    public AppUser getUser(@PathVariable long id){
+        return userService.getUser(id);
     }
 
 }
