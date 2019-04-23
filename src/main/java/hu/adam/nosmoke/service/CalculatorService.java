@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Service
 public class CalculatorService {
 
-    public long calculateMoneySince(LocalDate date, long cost){
-        return -1;
+    public float calculateMoneySince(LocalDate date, float cost){
+        return -1f;
     }
 }
