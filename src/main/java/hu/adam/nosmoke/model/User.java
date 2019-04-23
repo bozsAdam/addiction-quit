@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class User {
 
     @Id
@@ -23,10 +24,9 @@ public class User {
     private String userName;
     private String email;
     private LocalDate startDate;
-    private long dailyDose;
-    private Item addictionItem;
+    private float dailyDose;
 
     @ManyToOne
-    private Item item;
+    private Item addictionItem;
 
 }

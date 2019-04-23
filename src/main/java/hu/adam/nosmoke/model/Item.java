@@ -10,6 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class Item {
 
     @Id
@@ -17,13 +18,13 @@ public class Item {
     private long id;
 
     private String name;
-    private long cost;
+    private float cost;
 
     @Singular
-    @OneToMany(mappedBy = "item",cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "addictionItem",cascade = {CascadeType.PERSIST})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JsonIgnoreProperties({"item"})
+    @JsonIgnoreProperties({"addictionItem"})
     private Set<User> users;
 
 }
