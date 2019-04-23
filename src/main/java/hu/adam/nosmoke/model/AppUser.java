@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue

@@ -25,6 +25,6 @@ public class Item {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnoreProperties({"addictionItem"})
-    private Set<User> users;
+    private Set<AppUser> appUsers;
 
 }
