@@ -33,7 +33,7 @@ class CalculatorServiceTest {
     }
 
     @Test
-    void calculateMoneySinceIllegalArguementMinus(){
+    void calculateMoneySinceIllegalArgumentMinus(){
         assertThrows(IllegalArgumentException.class,() -> calculatorService.calculateMoneySince(LocalDate.now(),-2000));
     }
 
