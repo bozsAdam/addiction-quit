@@ -11,12 +11,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void saveUser(User user){}
+    public void saveUser(User user){
+        userRepository.save(user);
+    }
 
-    public User getUser(long id){return null;}
+    public User getUser(long id){
+        return userRepository.findById(id)
+                            .orElseThrow(NullPointerException::new);
+    }
 
-    public void updateUser(long id){}
-
-    public void deleteUser(long id){}
+    public void deleteUser(long id){
+        userRepository.deleteById(id);
+    }
 
 }

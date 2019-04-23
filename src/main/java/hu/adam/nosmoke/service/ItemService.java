@@ -11,13 +11,18 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public void saveItem(Item item){}
+    public void saveItem(Item item){
+        itemRepository.save(item);
+    }
 
-    public Item getItem(long id){return null;}
+    public Item getItem(long id){
+        return itemRepository.findById(id)
+                            .orElseThrow(NullPointerException::new);
+    }
 
-    public void updateItem(long id){}
-
-    public void deleteItem(long id){}
+    public void deleteItem(long id){
+        itemRepository.deleteById(id);
+    }
 
 
 }
