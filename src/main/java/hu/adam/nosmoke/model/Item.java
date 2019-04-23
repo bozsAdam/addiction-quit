@@ -27,4 +27,8 @@ public class Item {
     @JsonIgnoreProperties({"addictionItem"})
     private Set<AppUser> appUsers;
 
+    public void addAppUser(AppUser appUser){
+        appUsers.add(appUser);
+    }
+
 }
