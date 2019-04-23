@@ -31,4 +31,11 @@ class CalculatorServiceTest {
 
         assertEquals(1500*5,cost);
     }
+
+    @Test
+    void calculateMoneySinceIllegalArguementMinus(){
+        assertThrows(IllegalArgumentException.class,() -> calculatorService.calculateMoneySince(LocalDate.now(),-2000));
+    }
+
+
 }
