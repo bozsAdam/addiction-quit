@@ -1,0 +1,11 @@
+body{
+    font-family: 'Oswald', sans-serif;
+}
+
+li.indicator-item .active{
+    background-color: black;
+}
+
+.login-card{
+    margin-top: 15vh;
+}
