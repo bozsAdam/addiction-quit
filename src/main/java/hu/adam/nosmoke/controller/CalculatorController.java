@@ -24,7 +24,7 @@ public class CalculatorController {
         AppUser user = userService.getUser(userId);
         float dailyCost = user.getAddictionItem().getCost() * user.getDailyDose();
 
-        return calculatorService.calculateMoneySince(user.getStartDate(), dailyCost);
+        return calculatorService.calculateMoneySince(user.getStopDate(), dailyCost);
     }
 
 }

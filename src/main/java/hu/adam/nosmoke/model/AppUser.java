@@ -25,7 +25,7 @@ public class AppUser {
 
     private String userName;
     private String email;
-    private LocalDate startDate;
+    private LocalDate stopDate;
     private float dailyDose;
 
     @ManyToOne
