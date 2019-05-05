@@ -31,3 +31,10 @@ let getDate = ()=>{
 
     return date[2] + "-" + months[date[0]] + "-" + date[1];
 };
+
+let getName = ()=>{
+    let firstName = document.getElementById("first_name").value;
+    let lastName = document.getElementById("last_name").value;
+
+    return lastName + " " + firstName;
+};
