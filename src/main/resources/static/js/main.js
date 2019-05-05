@@ -1,16 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems,{container: "body"});
-});
+let serverUrl = "http://localhost:8080/";
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-});
+document.addEventListener('DOMContentLoaded', () =>{
+    let dateElems = document.querySelectorAll('.datepicker');
+    let dateInstances = M.Datepicker.init(dateElems,{container: "body"});
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.autocomplete');
-    var instances = M.Autocomplete.init(elems,{data :{}});
+    let modalElems = document.querySelectorAll('.modal');
+    let modalInstances = M.Modal.init(modalElems);
 });
 
 let months = {
@@ -49,6 +44,24 @@ let makeUserRequest = ()=>{
       "userName": getName(),
       "email": document.getElementById("email").value,
       "stopDate": getDate(),
-      "dailyDose": document.getElementById("dailydose").value
+      "dailyDose": parseInt(document.getElementById("dailydose").value)
   };
+};
+
+let makeItemRequest = ()=>{
+    return {
+        "name": document.getElementById("addiction-item").value,
+        "cost": parseInt(document.getElementById("cost").value)
+    };
+};
+
+let postData = (url = ``, data = {}) =>{
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json());
 };
