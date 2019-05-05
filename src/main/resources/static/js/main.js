@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.autocomplete');
+    var instances = M.Autocomplete.init(elems,{data :{}});
+});
+
 let months = {
     "Jan":"01",
     "Feb":"02",
@@ -37,4 +42,13 @@ let getName = ()=>{
     let lastName = document.getElementById("last_name").value;
 
     return lastName + " " + firstName;
+};
+
+let makeUserRequest = ()=>{
+    return {
+      "userName": getName(),
+      "email": document.getElementById("email").value,
+      "stopDate": getDate(),
+      "dailyDose": document.getElementById("dailydose").value
+  };
 };

@@ -59,3 +59,5 @@ body{
 .card{
     padding: calc(5vh + 20px) calc(8vh + 20px);
 }
+
+.modal { width: 80vw !important ; height: 80vh !important ; }  /* increase the height and width as you desire */
