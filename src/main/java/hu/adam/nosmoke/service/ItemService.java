@@ -13,8 +13,8 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public void saveItem(Item item){
-        itemRepository.save(item);
+    public Item saveItem(Item item){
+        return itemRepository.save(item);
     }
 
     public Item getItem(long id){

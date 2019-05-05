@@ -17,8 +17,8 @@ public class ItemController {
     private ItemService itemService;
 
     @PostMapping("/add-item")
-    public void addItem(@RequestBody Item item){
-        itemService.saveItem(item);
+    public Item addItem(@RequestBody Item item){
+        return itemService.saveItem(item);
     }
 
     @GetMapping("/get-items")
