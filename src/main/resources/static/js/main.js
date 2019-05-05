@@ -1,13 +1,5 @@
 let serverUrl = "http://localhost:8080/";
 
-document.addEventListener('DOMContentLoaded', () =>{
-    let dateElems = document.querySelectorAll('.datepicker');
-    let dateInstances = M.Datepicker.init(dateElems,{container: "body"});
-
-    let modalElems = document.querySelectorAll('.modal');
-    let modalInstances = M.Modal.init(modalElems);
-});
-
 let months = {
     "Jan":"01",
     "Feb":"02",
@@ -55,9 +47,16 @@ let makeItemRequest = ()=>{
     };
 };
 
-let postData = (url = ``, data = {}) =>{
+let makeAlignRequest = (userId,itemId)=>{
+    return {
+        "userId":userId,
+        "itemId":itemId
+    };
+};
+
+let fetchData = (url = ``, data = {}, method="POST") =>{
     return fetch(url, {
-        method: "POST",
+        method: method,
         headers: {
             "Content-Type": "application/json",
         },
@@ -65,3 +64,41 @@ let postData = (url = ``, data = {}) =>{
     })
         .then(response => response.json());
 };
+
+document.addEventListener('DOMContentLoaded', () =>{
+    let dateElems = document.querySelectorAll('.datepicker');
+    let dateInstances = M.Datepicker.init(dateElems,{container: "body"});
+
+    let modalElems = document.querySelectorAll('.modal');
+    let modalInstances = M.Modal.init(modalElems);
+
+    document.getElementById("submit").addEventListener("click",(event) =>{
+        event.preventDefault();
+
+        let userId;
+        let itemId;
+
+        fetchData(serverUrl + "create-user", makeUserRequest())
+            .then(data =>{
+                console.log(data);
+                userId = data.id;
+            })
+            .catch(error => console.error(error));
+
+        fetchData(serverUrl + "add-item", makeItemRequest())
+            .then(data =>{
+                console.log(data);
+                itemId = data.id;
+            })
+            .then(()=>{
+                fetchData(serverUrl + "set-item", makeAlignRequest(userId,itemId),"PUT")
+                    .then(data =>{
+                        console.log(data);
+                    })
+                    .catch(error => console.error(error));
+            })
+            .catch(error => console.error(error));
+
+
+    })
+});
