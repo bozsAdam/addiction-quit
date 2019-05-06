@@ -1,0 +1,71 @@
+body{
+    font-family: 'Oswald', sans-serif;
+    background-image: url(https://source.unsplash.com/random/1920x1080);
+    margin: 0;
+    font-size: calc(12px + 1vh);
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+
+    /* Background image is fixed in the viewport so that it doesn't move when
+       the content's height is greater than the image's height */
+    background-attachment: fixed;
+
+    /* This is what makes the background image rescale based
+       on the container's size */
+    background-size: cover;
+
+    /* Set a background color that will be displayed
+       while the background image is loading */
+    background-color: #464646;
+}
+
+.flex{
+    display: flex;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+
+.box-wrapper {
+    width: 50vw;
+    height: 100vh;
+}
+
+.body-wrapper {
+    height: 100vh;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.box {
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+    .box-wrapper {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+.card{
+    padding: calc(5vh + 20px) calc(8vh + 20px);
+}
+
+.register-modal { width: 80vw !important ; height: 80vh !important ; }
+
+.github{
+    color: black;
+}
+
+i{
+    font-size: calc(12px + 3vh) !important;
+}
