@@ -13,7 +13,7 @@ The application to calculate how much money you saved!
 
 The project is deployed to Heroku, to see it live:
 
-[Addiction Quit](https://addiction-quit.herokuapp.com/)
+[Addiction Quit](https://anti-addiction.herokuapp.com/)
 
 
 ## Built With
