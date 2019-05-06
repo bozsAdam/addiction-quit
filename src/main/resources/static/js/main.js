@@ -97,16 +97,25 @@ function calculateData(userId) {
             let mainContainer = document.getElementById("main-box");
             let textContainer = document.createElement("div");
             let moneyText = document.createElement("h1");
+            let resetBtn = document.createElement("a");
+
             mainContainer.innerHTML = "";
 
-            textContainer.classList.add("center");
-            textContainer.classList.add("text");
-            textContainer.classList.add("black-text");
+            textContainer.classList.add("center","text","black-text");
             textContainer.innerText = "That's how much money you saved:";
             moneyText.innerText = data + " Ft";
+            resetBtn.classList.add("waves-effect", "waves-light", "btn","center","blue-grey","darken-4");
+            resetBtn.innerText = "Reset";
+
+            resetBtn.addEventListener("click",(event)=>{
+                event.preventDefault();
+                sessionStorage.clear();
+                location.reload();
+            });
 
             mainContainer.appendChild(textContainer);
             mainContainer.appendChild(moneyText);
+            mainContainer.appendChild(resetBtn);
 
         })
         .catch(error => console.error(error));
