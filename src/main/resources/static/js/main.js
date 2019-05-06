@@ -95,21 +95,27 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     let modalElems = document.querySelectorAll('.modal');
     let modalInstances = M.Modal.init(modalElems);
+    let sessionUserId = sessionStorage.getItem("userId");
 
-    document.getElementById("submit").addEventListener("click",(event) =>{
-        event.preventDefault();
+    if(sessionUserId == null) {
+        document.getElementById("submit").addEventListener("click",(event) =>{
+            event.preventDefault();
 
-        fetchData(serverUrl + "create-user",makeUserRequest())
-            .then(data => {
-                let userId = data.id;
+            fetchData(serverUrl + "create-user",makeUserRequest())
+                .then(data => {
+                    let userId = data.id;
 
-                if(document.getElementById("come-back").checked){
-                    sessionStorage.setItem("userId",userId);
-                }
+                    if(document.getElementById("come-back").checked){
+                        sessionStorage.setItem("userId",userId);
+                    }
 
-                calculateData(userId);
-            })
-            .catch(error => console.error(error));
+                    calculateData(userId);
+                })
+                .catch(error => console.error(error));
+        })
+    } else{
+        calculateData(sessionUserId);
+    }
 
-    })
+
 });
