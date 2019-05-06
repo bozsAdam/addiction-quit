@@ -21,6 +21,12 @@ let getDate = ()=>{
                         .replace(",","")
                         .split(" ");
 
+    for (let value of date){
+        if(value ===""){
+            return null;
+        }
+    }
+
     return date[2] + "-" + months[date[0]] + "-" + date[1];
 };
 
@@ -45,6 +51,23 @@ let makeUserRequest = ()=>{
         }
 
   };
+};
+
+let isInputDataValid = ()=>{
+    let request = makeUserRequest();
+
+    if(request["item"]["name"] === ""){
+        return false;
+    }
+
+    if(request["user"]["stopDate"] === null){
+        return false;
+    }
+
+    return request["user"]["userName"] !== " ";
+
+
+
 };
 
 let fetchData = (url = ``, data = {}, method="POST") =>{
@@ -101,17 +124,23 @@ document.addEventListener('DOMContentLoaded', () =>{
         document.getElementById("submit").addEventListener("click",(event) =>{
             event.preventDefault();
 
-            fetchData(serverUrl + "create-user",makeUserRequest())
-                .then(data => {
-                    let userId = data.id;
+            if(isInputDataValid()){
+                fetchData(serverUrl + "create-user",makeUserRequest())
+                    .then(data => {
+                        let userId = data.id;
 
-                    if(document.getElementById("come-back").checked){
-                        sessionStorage.setItem("userId",userId);
-                    }
+                        if(document.getElementById("come-back").checked){
+                            sessionStorage.setItem("userId",userId);
+                        }
 
-                    calculateData(userId);
-                })
-                .catch(error => console.error(error));
+                        calculateData(userId);
+                    })
+                    .catch(error => console.error(error));
+            } else{
+                alert("Please fill the form correctly!")
+            }
+
+
         })
     } else{
         calculateData(sessionUserId);
