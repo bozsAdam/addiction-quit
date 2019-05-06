@@ -60,4 +60,12 @@ body{
     padding: calc(5vh + 20px) calc(8vh + 20px);
 }
 
-.register-modal { width: 80vw !important ; height: 80vh !important ; }  /* increase the height and width as you desire */
+.register-modal { width: 80vw !important ; height: 80vh !important ; }
+
+.github{
+    color: black;
+}
+
+i{
+    font-size: calc(12px + 3vh) !important;
+}
