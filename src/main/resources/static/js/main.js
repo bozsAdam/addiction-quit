@@ -21,6 +21,12 @@ let getDate = ()=>{
                         .replace(",","")
                         .split(" ");
 
+    for (let value of date){
+        if(value ===""){
+            return null;
+        }
+    }
+
     return date[2] + "-" + months[date[0]] + "-" + date[1];
 };
 
@@ -33,25 +39,35 @@ let getName = ()=>{
 
 let makeUserRequest = ()=>{
     return {
-      "userName": getName(),
-      "email": document.getElementById("email").value,
-      "stopDate": getDate(),
-      "dailyDose": parseInt(document.getElementById("dailydose").value)
+        "user":{
+            "userName": getName(),
+            "email": document.getElementById("email").value,
+            "stopDate": getDate(),
+            "dailyDose": parseInt(document.getElementById("dailydose").value)
+        },
+        "item":{
+            "name": document.getElementById("addiction-item").value,
+            "cost": parseInt(document.getElementById("cost").value)
+        }
+
   };
 };
 
-let makeItemRequest = ()=>{
-    return {
-        "name": document.getElementById("addiction-item").value,
-        "cost": parseInt(document.getElementById("cost").value)
-    };
-};
+let isInputDataValid = ()=>{
+    let request = makeUserRequest();
 
-let makeAlignRequest = (userId,itemId)=>{
-    return {
-        "userId":userId,
-        "itemId":itemId
-    };
+    if(request["item"]["name"] === ""){
+        return false;
+    }
+
+    if(request["user"]["stopDate"] === null){
+        return false;
+    }
+
+    return request["user"]["userName"] !== " ";
+
+
+
 };
 
 let fetchData = (url = ``, data = {}, method="POST") =>{
@@ -102,10 +118,33 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     let modalElems = document.querySelectorAll('.modal');
     let modalInstances = M.Modal.init(modalElems);
+    let sessionUserId = sessionStorage.getItem("userId");
 
-    document.getElementById("submit").addEventListener("click",(event) =>{
-        event.preventDefault();
+    if(sessionUserId == null) {
+        document.getElementById("submit").addEventListener("click",(event) =>{
+            event.preventDefault();
+
+            if(isInputDataValid()){
+                fetchData(serverUrl + "create-user",makeUserRequest())
+                    .then(data => {
+                        let userId = data.id;
+
+                        if(document.getElementById("come-back").checked){
+                            sessionStorage.setItem("userId",userId);
+                        }
+
+                        calculateData(userId);
+                    })
+                    .catch(error => console.error(error));
+            } else{
+                alert("Please fill the form correctly!")
+            }
 
 
-    })
+        })
+    } else{
+        calculateData(sessionUserId);
+    }
+
+
 });

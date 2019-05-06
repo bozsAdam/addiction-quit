@@ -22,12 +22,11 @@ public class UserService {
     private ItemRepository itemRepository;
 
     public AppUser saveUser(AppUser appUser, Item item){
-        AppUser savedAppUser = userRepository.saveAndFlush(appUser);
-        item.addAppUser(savedAppUser);
-        Item savedItem = itemRepository.save(item);
-        savedAppUser.setAddictionItem(savedItem);
+        appUser.setAddictionItem(item);
+        item.addAppUser(appUser);
+        itemRepository.save(item);
 
-        return savedAppUser;
+        return appUser;
     }
 
     public AppUser getUser(long id){
