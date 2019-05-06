@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anti-Addictivity</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="js/main.js" defer></script>
+</head>
+<body>
+
+    <div class="flex center body-wrapper">
+        <div class="column card lime lighten-5" id="main-box">
+            <div class="text black-text center">
+                <p>You'd like to know how much money you saved after putting down cigarettes, energy drink or anything that you drank daily?</p>
+                <p>Let's get right into it!</p>
+            </div>
+            <a class="waves-effect waves-light btn modal-trigger center blue-grey darken-4 " href="#modal1">Calculate</a>
+        </div>
+    </div>
+    <!-- Modal Trigger -->
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal register-modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Calculate</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" id="stopdate" class="datepicker">
+                    <label for="stopdate">Date of stopping</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <p class="range-field col s12">
+                    <label for="dailydose">Daily dose</label>
+                    <input type="range" id="dailydose" min="0" max="100" />
+                </p>
+            </div>
+
+            <div class="row">
+                <p class="range-field col s12">
+                    <label for="cost">Cost</label>
+                    <input type="range" id="cost" min="0" step="10" max="20000" />
+                </p>
+            </div>
+
+            <div class="row">
+                <p class="s12">
+                    <label for="addiction-item">Addiction item</label>
+                    <input type="text" id="addiction-item" class="validate">
+                </p>
+            </div>
+
+            <p>
+                <label>
+                    <input type="checkbox" id="come-back"/>
+                    <span>Remember me</span>
+                </label>
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="" class="modal-close waves-effect waves-green btn-flat" id="submit">Submit</a>
+        </div>
+    </div>
+</body>
+</html>
