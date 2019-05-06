@@ -1,7 +1,10 @@
 package hu.adam.nosmoke.controller;
 
 import hu.adam.nosmoke.controller.request.AlignRequest;
+import hu.adam.nosmoke.controller.request.UserRequest;
 import hu.adam.nosmoke.model.AppUser;
+import hu.adam.nosmoke.model.Item;
+import hu.adam.nosmoke.service.ItemService;
 import hu.adam.nosmoke.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
@@ -20,9 +23,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create-user")
-    public AppUser createUser(@RequestBody AppUser appUser){
-        log.info("Saving user with name: " + appUser.getUserName());
-        return userService.saveUser(appUser);
+    public AppUser createUser(@RequestBody UserRequest userRequest){
+        log.info("Saving user with name: " + userRequest.getUser().getUserName());
+        return userService.saveUser(userRequest.getUser(),userRequest.getItem());
     }
 
     @GetMapping("/get-users")

@@ -21,8 +21,13 @@ public class UserService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public AppUser saveUser(AppUser appUser){
-        return userRepository.save(appUser);
+    public AppUser saveUser(AppUser appUser, Item item){
+        AppUser savedAppUser = userRepository.saveAndFlush(appUser);
+        item.addAppUser(savedAppUser);
+        Item savedItem = itemRepository.save(item);
+        savedAppUser.setAddictionItem(savedItem);
+
+        return savedAppUser;
     }
 
     public AppUser getUser(long id){

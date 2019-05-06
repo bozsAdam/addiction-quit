@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +26,7 @@ public class Item {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonIgnoreProperties({"addictionItem"})
-    private Set<AppUser> appUsers;
+    private List<AppUser> appUsers = new LinkedList<>();
 
     public void addAppUser(AppUser appUser){
         appUsers.add(appUser);
