@@ -14,7 +14,7 @@ public class ItemService {
     private ItemRepository itemRepository;
 
     public Item saveItem(Item item){
-        return itemRepository.save(item);
+        return itemRepository.saveAndFlush(item);
     }
 
     public Item getItem(long id){
