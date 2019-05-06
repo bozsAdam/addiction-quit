@@ -8,7 +8,9 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -30,9 +32,14 @@ public class UserController {
     }
 
     @PutMapping("/set-item")
-    public void alignItemToUser(@RequestBody AlignRequest alignRequest){
+    public Map<String,String> alignItemToUser(@RequestBody AlignRequest alignRequest){
         log.info("Setting the item for a user");
         userService.alignItemToUser(alignRequest.getItemId(),alignRequest.getUserId());
+
+        Map<String,String> result = new HashMap<>();
+        result.put("message","Item setted for user");
+
+        return result;
     }
 
     @GetMapping("/user/{id}")

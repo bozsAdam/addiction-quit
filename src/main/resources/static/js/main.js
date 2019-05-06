@@ -65,6 +65,37 @@ let fetchData = (url = ``, data = {}, method="POST") =>{
         .then(response => response.json());
 };
 
+let getData = (url = ``) =>{
+    return fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+        .then(response => response.json());
+};
+
+function calculateData(userId) {
+    fetchData(serverUrl + "calculate/" + userId)
+        .then(data => {
+            let mainContainer = document.getElementById("main-box");
+            let textContainer = document.createElement("div");
+            let moneyText = document.createElement("h1");
+            mainContainer.innerHTML = "";
+
+            textContainer.classList.add("center");
+            textContainer.classList.add("text");
+            textContainer.classList.add("black-text");
+            textContainer.innerText = "That's how much money you saved:";
+            moneyText.innerText = data + " Ft";
+
+            mainContainer.appendChild(textContainer);
+            mainContainer.appendChild(moneyText);
+
+        })
+        .catch(error => console.error(error));
+}
+
 document.addEventListener('DOMContentLoaded', () =>{
     let dateElems = document.querySelectorAll('.datepicker');
     let dateInstances = M.Datepicker.init(dateElems,{container: "body"});
@@ -74,30 +105,6 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     document.getElementById("submit").addEventListener("click",(event) =>{
         event.preventDefault();
-
-        let userId;
-        let itemId;
-
-        fetchData(serverUrl + "create-user", makeUserRequest())
-            .then(data =>{
-                console.log(data);
-                userId = data.id;
-            })
-            .catch(error => console.error(error));
-
-        fetchData(serverUrl + "add-item", makeItemRequest())
-            .then(data =>{
-                console.log(data);
-                itemId = data.id;
-            })
-            .then(()=>{
-                fetchData(serverUrl + "set-item", makeAlignRequest(userId,itemId),"PUT")
-                    .then(data =>{
-                        console.log(data);
-                    })
-                    .catch(error => console.error(error));
-            })
-            .catch(error => console.error(error));
 
 
     })
