@@ -18,9 +18,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create-user")
-    public void createUser(@RequestBody AppUser appUser){
+    public AppUser createUser(@RequestBody AppUser appUser){
         log.info("Saving user with name: " + appUser.getUserName());
-        userService.saveUser(appUser);
+        return userService.saveUser(appUser);
     }
 
     @GetMapping("/get-users")
