@@ -1,4 +1,4 @@
-let serverUrl = "http://localhost:8080/";
+let serverUrl = "http://anti-addiction.herokuapp.com/";
 
 let months = {
     "Jan":"01",
