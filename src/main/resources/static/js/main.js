@@ -1,4 +1,10 @@
-let serverUrl = "http://anti-addiction.herokuapp.com/";
+let serverUrl = "https://anti-addiction.herokuapp.com/";
+
+var moneyFormat = wNumb({
+    mark: '.',
+    thousand: ',',
+    suffix: ' Ft'
+});
 
 let months = {
     "Jan":"01",
@@ -103,7 +109,7 @@ function calculateData(userId) {
 
             textContainer.classList.add("center","text","black-text");
             textContainer.innerText = "That's how much money you saved:";
-            moneyText.innerText = data + " Ft";
+            moneyText.innerText = moneyFormat.to(data);
             resetBtn.classList.add("waves-effect", "waves-light", "btn","center","blue-grey","darken-4");
             resetBtn.innerText = "Reset";
 
